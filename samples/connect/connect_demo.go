@@ -44,6 +44,7 @@ func connectWithSecret() {
 	authConfig := &config.ConnectAuthConfig{
 		Id:           "your device id",
 		Servers:      "mqtts://{MQTT_ACCESS_ADDRESS}:8883",
+		TlsEnable:    true,
 		Secret:       "your Secret",
 		ServerCaPath: "iotda server ca path",
 	}
@@ -63,6 +64,7 @@ func connectWithX509Cert() {
 	authConfig := &config.ConnectAuthConfig{
 		Id:              "your device id",
 		Servers:         "mqtts://{MQTT_ACCESS_ADDRESS}:8883",
+		TlsEnable:       true,
 		AuthType:        constants.AuthTypeX509,
 		ServerCaPath:    "iotda server ca path",
 		CertFilePath:    "device cert path",
@@ -85,6 +87,7 @@ func connectWithRetry() {
 	authConfig := &config.ConnectAuthConfig{
 		Id:            "your device id",
 		Servers:       "mqtts://{MQTT_ACCESS_ADDRESS}:8883",
+		TlsEnable:     true,
 		Secret:        "your Secret",
 		AutoReconnect: &autoReconnect,
 		ServerCaPath:  "iotda server ca path",

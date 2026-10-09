@@ -40,6 +40,7 @@ func createGateway() *gateway.MqttGatewayDevice {
 	authConfig := &config.ConnectAuthConfig{
 		Id:           "your device id",
 		Servers:      "mqtts://{MQTT_ACCESS_ADDRESS}:8883",
+		TlsEnable:    true,
 		Secret:       "your Secret",
 		ServerCaPath: "iotda server ca path",
 	}

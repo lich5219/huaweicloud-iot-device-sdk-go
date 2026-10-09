@@ -40,6 +40,7 @@ type ConnectAuthConfig struct {
 	Secret             string // 设备密钥
 	VerifyTimestamp    bool
 	Servers            string
+	TlsEnable          bool  `json:"tlsEnable"` // 是否启用设备接入 TLS，默认关闭；开启时需配置 ServerCaPath
 	Qos                byte  // qos default 0
 	BatchSubDeviceSize int   // 一次上报数据的子设备数量 默认10， 若超过该值， 则默认会分多次上报
 	AuthType           uint8 // 认证类型， 密码认证或证书认证

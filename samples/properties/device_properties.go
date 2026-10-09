@@ -43,6 +43,7 @@ func createMqttDevice() *device2.MqttDevice {
 	authConfig := &config2.ConnectAuthConfig{
 		Id:           "your device id",
 		Servers:      "mqtts://{MQTT_ACCESS_ADDRESS}:8883",
+		TlsEnable:    true,
 		Secret:       "your Secret",
 		ServerCaPath: "iotda server ca path",
 	}

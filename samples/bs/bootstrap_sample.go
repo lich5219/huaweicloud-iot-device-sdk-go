@@ -39,8 +39,8 @@ import (
 )
 
 /*
-  演示在发放平台创建设备后，通过秘钥认证设备进行发放，通过引导服务获取真实的服务器地址并接入平台
-  使用静态策略，关键字来源为属性上报，上报结构体 “baseStrategyKeyword” 包含设置的策略关键字
+演示在发放平台创建设备后，通过秘钥认证设备进行发放，通过引导服务获取真实的服务器地址并接入平台
+使用静态策略，关键字来源为属性上报，上报结构体 “baseStrategyKeyword” 包含设置的策略关键字
 */
 func bootstrapSecret() {
 	// 发放平台注册的设备ID
@@ -52,6 +52,7 @@ func bootstrapSecret() {
 		Id:             deviceId,
 		Secret:         pwd,
 		Servers:        "mqtts://{mqtt access ip}:8883",
+		TlsEnable:      true,
 		UseBootstrap:   true,
 		BsServerCaPath: "bs server ca cert path",
 		ServerCaPath:   "iotda server ca cert path",
@@ -72,8 +73,8 @@ func bootstrapSecret() {
 }
 
 /*
-  演示在发放平台创建设备后，通过证书认证设备进行发放，通过引导服务获取真实的服务器地址并接入平台
-  使用静态策略，关键字来源为属性上报，上报结构体 “baseStrategyKeyword” 包含设置的策略关键字
+演示在发放平台创建设备后，通过证书认证设备进行发放，通过引导服务获取真实的服务器地址并接入平台
+使用静态策略，关键字来源为属性上报，上报结构体 “baseStrategyKeyword” 包含设置的策略关键字
 */
 func bootstrapCert() {
 	// 发放平台注册的设备ID
@@ -81,6 +82,7 @@ func bootstrapCert() {
 	authConfig := &config2.ConnectAuthConfig{
 		Id:              deviceId,
 		Servers:         "mqtts://{MQTT_ACCESS_ADDRESS}:8883",
+		TlsEnable:       true,
 		UseBootstrap:    true,
 		AuthType:        constants.AuthTypeX509,
 		BsServerCaPath:  "bs server ca cert path",
@@ -104,9 +106,9 @@ func bootstrapCert() {
 }
 
 /*
-  演示使用设备组秘钥认证方式通过静态策略进行发放设备，通过引导服务获取真实的服务器地址并接入平台，设备组发放时无需在发放平台注册设备，静态策略为数据上报。
-  若将设备注册到指定产品则设备ID格式为{product_Id}_xxx, 以productId开头加上下划线后拼接设备id，且仅能存在一个下划线。若存在多个下划线或
-  没有下划线，则默认生成一个产品
+演示使用设备组秘钥认证方式通过静态策略进行发放设备，通过引导服务获取真实的服务器地址并接入平台，设备组发放时无需在发放平台注册设备，静态策略为数据上报。
+若将设备注册到指定产品则设备ID格式为{product_Id}_xxx, 以productId开头加上下划线后拼接设备id，且仅能存在一个下划线。若存在多个下划线或
+没有下划线，则默认生成一个产品
 */
 func bootstrapScopeIdSecretStaticPolicy() {
 	// 自定义设备id
@@ -118,6 +120,7 @@ func bootstrapScopeIdSecretStaticPolicy() {
 		Id:             deviceId,
 		Secret:         pwd,
 		Servers:        "mqtts://{MQTT_ACCESS_ADDRESS}:8883",
+		TlsEnable:      true,
 		UseBootstrap:   true,
 		BsServerCaPath: "bs server ca cert path",
 		ServerCaPath:   "iotda server ca cert path",
@@ -140,9 +143,9 @@ func bootstrapScopeIdSecretStaticPolicy() {
 }
 
 /*
-  演示使用设备组证书认证方式通过静态策略进行发放设备，通过引导服务获取真实的服务器地址并接入平台，设备组发放时无需在发放平台注册设备，静态策略为数据上报。
-  若将设备注册到指定产品则设备ID格式为{product_Id}_xxx, 以productId开头加上下划线后拼接设备id，且仅能存在一个下划线。若存在多个下划线或
-  没有下划线，则默认生成一个产品
+演示使用设备组证书认证方式通过静态策略进行发放设备，通过引导服务获取真实的服务器地址并接入平台，设备组发放时无需在发放平台注册设备，静态策略为数据上报。
+若将设备注册到指定产品则设备ID格式为{product_Id}_xxx, 以productId开头加上下划线后拼接设备id，且仅能存在一个下划线。若存在多个下划线或
+没有下划线，则默认生成一个产品
 */
 func bootstrapScopeIdCertStaticPolicy() {
 	// 自定义设备id
@@ -150,6 +153,7 @@ func bootstrapScopeIdCertStaticPolicy() {
 	authConfig := &config2.ConnectAuthConfig{
 		Id:              deviceId,
 		Servers:         "mqtts://{MQTT_ACCESS_ADDRESS}:8883",
+		TlsEnable:       true,
 		UseBootstrap:    true,
 		AuthType:        constants.AuthTypeX509,
 		BsServerCaPath:  "bs server ca cert path",

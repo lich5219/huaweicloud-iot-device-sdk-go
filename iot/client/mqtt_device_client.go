@@ -101,7 +101,7 @@ func (mqttClient *MqttDeviceClient) Connect() bool {
 }
 
 func (mqttClient *MqttDeviceClient) configureTLS(options *mqtt.ClientOptions) error {
-	if !strings.ContainsAny(mqttClient.ConnectAuthConfig.Servers, "tls|ssl|mqtts") {
+	if !mqttClient.ConnectAuthConfig.TlsEnable {
 		return nil
 	}
 

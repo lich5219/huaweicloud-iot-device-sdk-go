@@ -191,6 +191,8 @@ SDK面向运算、存储能力较强的嵌入式终端设备，开发者通过�
 
 ## 4.3 设备初始化
 
+设备接入的 CA 加载和 TLS 配置由 `ConnectAuthConfig.TlsEnable` 显式控制，默认 `false`，不再根据 `Servers` 的 URL 判断。使用 TLS 的现有调用方升级后必须设置 `TlsEnable: true`，并提供 `ServerCaPath`。调用方应配置与开关一致的连接地址：关闭 TLS 使用 `mqtt://...:1883`，开启 TLS 使用 `mqtts://...:8883`。
+
 * 创建设备
 * 创建设备。
 
@@ -203,6 +205,7 @@ SDK面向运算、存储能力较强的嵌入式终端设备，开发者通过�
 	authConfig := &config2.ConnectAuthConfig{
 		Id:       "{your device id}",
 		Servers:  "mqtt://{access_address}:1883",
+		TlsEnable: false,
 		Secret: "your device secret",
 	}
 	mqttDevice := device2.NewMqttDevice(authConfig)
@@ -215,6 +218,7 @@ SDK面向运算、存储能力较强的嵌入式终端设备，开发者通过�
     authConfig := &config.ConnectAuthConfig{
 		Id:       "{your device id}",
 		Servers:  "mqtts://{access_address}:8883",
+		TlsEnable: true,
 		Secret: "your device secret",
 		ServerCaPath: "./resources/root.pem",
 	}
@@ -227,6 +231,7 @@ SDK面向运算、存储能力较强的嵌入式终端设备，开发者通过�
      authConfig := &config.ConnectAuthConfig{
 		 Id:       "{your device id}",
 		 Servers:  "mqtts://{access_address}:8883",
+		 TlsEnable: true,
 		 AuthType:        constants.AuthTypeX509,
 		 ServerCaPath: "./resources/root.pem",
          CertFilePath: "your device cert path",
@@ -585,6 +590,7 @@ def run():
     authConfig := &config.ConnectAuthConfig{
 		Id:           "your device id",
 		Servers:      "mqtts://{your access ip}:8883",
+		TlsEnable: true,
 		Secret:     "your device key",
 		ServerCaPath: "./resources/root.pem",
 	}
@@ -848,6 +854,7 @@ BootStrapBody中BaseStrategyKeyword的值xxx为创建的静态策略的关键字
 		Id:             deviceId,
 		Secret:       pwd,
 		Servers:        "mqtts://{bootstrap access ip}:8883",
+		TlsEnable: true,
 		UseBootstrap:   true,
 		BsServerCaPath: "./resource/root.pem",
 		ServerCaPath:   "./resource/root.pem",
@@ -880,6 +887,7 @@ BootStrapBody中BaseStrategyKeyword的值xxx为创建的静态策略的关键字
 	authConfig := &config.ConnectAuthConfig{
 		Id:       "{your device id}",
 		Servers:  "mqtts://{access_address}:8883",
+		TlsEnable: true,
 		AuthType:        constants.AuthTypeX509,
         AutoReconnect:   &autoReconnect,
 		ServerCaPath: "./resources/root.pem",
